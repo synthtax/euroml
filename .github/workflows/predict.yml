@@ -58,15 +58,3 @@ jobs:
           )"
           git push || true
 
-      - name: Send email summary
-        if: hashFiles('data/email-summary.html') != ''
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: ${{ secrets.SMTP_SERVER }}
-          server_port: ${{ secrets.SMTP_PORT }}
-          username: ${{ secrets.SMTP_USERNAME }}
-          password: ${{ secrets.SMTP_PASSWORD }}
-          subject: "EuroMLions — ${{ steps.mode.outputs.mode == 'predict' && 'Predictions' || 'Results' }}"
-          html_body: file://data/email-summary.html
-          to: ${{ secrets.EMAIL_TO }}
-          from: ${{ secrets.EMAIL_FROM }}
