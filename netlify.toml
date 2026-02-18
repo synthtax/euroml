@@ -1,3 +1,6 @@
 [build]
   publish = "site"
   command = "cp data/predictions.json site/ && cp data/history-predictions.json site/"
+
+[build.environment]
+  PYTHON_VERSION = "none"
