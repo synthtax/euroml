@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EuroMLions</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ═══ Main Content (password protection via Netlify) ═══ -->
+  <div id="app" class="hidden">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <h1 class="logo">🎰 EuroMLions</h1>
+        <p class="tagline">Predicting EuroMillions with ML. Confidently wrong since 2026.</p>
+      </div>
+    </header>
+
+    <!-- Nav -->
+    <nav class="nav">
+      <div class="container">
+        <button class="nav-btn active" data-section="predictions">Predictions</button>
+        <button class="nav-btn" data-section="models">Models</button>
+        <button class="nav-btn" data-section="history">History</button>
+        <button class="nav-btn" data-section="stats">Stats</button>
+      </div>
+    </nav>
+
+    <!-- Predictions Section -->
+    <section id="predictions" class="section active">
+      <div class="container">
+        <div class="section-header">
+          <h2>Next Draw Predictions</h2>
+          <p id="draw-countdown" class="countdown"></p>
+        </div>
+
+        <div class="prediction-card main-prediction">
+          <div class="prediction-label">Ensemble Prediction</div>
+          <div class="prediction-sublabel">Blended from all three models</div>
+          <div class="balls-row" id="ensemble-main"></div>
+          <div class="balls-divider">+</div>
+          <div class="balls-row" id="ensemble-stars"></div>
+          <div class="uncertainty-row" id="ensemble-uncertainty"></div>
+        </div>
+
+        <div class="meta-row" id="prediction-meta"></div>
+      </div>
+    </section>
+
+    <!-- Models Section -->
+    <section id="models" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>What the Models Think</h2>
+          <p class="section-desc">Three models, three opinions. The ensemble blends them all.</p>
+        </div>
+
+        <div class="model-grid">
+          <div class="model-card" id="model-a-card">
+            <div class="model-name">Model A <span class="model-badge">Combined</span></div>
+            <div class="model-desc">Predicts both main numbers and Lucky Stars together</div>
+            <div class="model-picks">
+              <div class="balls-row small" id="model-a-main"></div>
+              <div class="balls-row small" id="model-a-stars"></div>
+            </div>
+          </div>
+
+          <div class="model-card" id="model-b-card">
+            <div class="model-name">Model B <span class="model-badge specialist">Main Specialist</span></div>
+            <div class="model-desc">Focuses all capacity on main numbers (1-50)</div>
+            <div class="model-picks">
+              <div class="balls-row small" id="model-b-main"></div>
+            </div>
+          </div>
+
+          <div class="model-card" id="model-c-card">
+            <div class="model-name">Model C <span class="model-badge specialist">Stars Specialist</span></div>
+            <div class="model-desc">Focuses all capacity on Lucky Stars (1-12)</div>
+            <div class="model-picks">
+              <div class="balls-row small" id="model-c-stars"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="consensus-card" id="consensus"></div>
+      </div>
+    </section>
+
+    <!-- History Section -->
+    <section id="history" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Track Record</h2>
+          <p class="section-desc">Every prediction vs reality. A chronicle of confident wrongness.</p>
+        </div>
+        <div id="history-content"></div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Performance</h2>
+          <p class="section-desc">How the model performs against the ultimate benchmark: random chance.</p>
+        </div>
+        <div id="stats-content"></div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p class="footer-brand">EuroMLions — predicting EuroMillions with ML since 2026 🍀</p>
+        <p class="footer-disclaimer">These predictions are confidently wrong. That's the whole thing.</p>
+        <p class="footer-note">EuroMillions draws are genuinely, mathematically random.<br>No model can predict truly random events. This is known. This is fine. 💙</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

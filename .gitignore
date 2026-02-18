@@ -1,0 +1,5 @@
+.misc
+.env
+__pycache__/
+*.pyc
+data/email-summary.html

@@ -1,0 +1,162 @@
+{
+  "generated": "2026-02-17T19:40:53.816161",
+  "trained_on": "980 draws (post-Sept 2016)",
+  "sequence_length": 100,
+  "ensemble": {
+    "main_numbers": [
+      20,
+      23,
+      42,
+      44,
+      48
+    ],
+    "main_probabilities": [
+      0.2511,
+      0.2441,
+      0.2424,
+      0.2411,
+      0.2405
+    ],
+    "main_uncertainty": [
+      0.0231,
+      0.0242,
+      0.022,
+      0.0219,
+      0.0278
+    ],
+    "lucky_stars": [
+      2,
+      3
+    ],
+    "lucky_star_probabilities": [
+      0.2861,
+      0.2857
+    ],
+    "lucky_star_uncertainty": [
+      0.0178,
+      0.0166
+    ]
+  },
+  "model_A_combined": {
+    "main_numbers": [
+      17,
+      19,
+      20,
+      21,
+      42
+    ],
+    "main_probabilities": [
+      0.2461,
+      0.2447,
+      0.2444,
+      0.2424,
+      0.2419
+    ],
+    "main_uncertainty": [
+      0.0261,
+      0.027,
+      0.0244,
+      0.0268,
+      0.0246
+    ],
+    "lucky_stars": [
+      2,
+      3
+    ],
+    "lucky_star_probabilities": [
+      0.2943,
+      0.2886
+    ],
+    "lucky_star_uncertainty": [
+      0.0221,
+      0.0207
+    ]
+  },
+  "model_B_main_only": {
+    "main_numbers": [
+      16,
+      20,
+      42,
+      44,
+      48
+    ],
+    "main_probabilities": [
+      0.2543,
+      0.2445,
+      0.2439,
+      0.2434,
+      0.2418
+    ],
+    "main_uncertainty": [
+      0.0343,
+      0.0327,
+      0.0369,
+      0.0342,
+      0.0331
+    ]
+  },
+  "model_C_stars_only": {
+    "lucky_stars": [
+      2,
+      6
+    ],
+    "lucky_star_probabilities": [
+      0.2844,
+      0.2819
+    ],
+    "lucky_star_uncertainty": [
+      0.0263,
+      0.0284
+    ]
+  },
+  "evaluation": {
+    "model_A_combined": {
+      "main_numbers": {
+        "avg_matched": 0.54,
+        "match_distribution": {
+          "0": 96,
+          "1": 65,
+          "2": 15,
+          "3": 0,
+          "4": 0,
+          "5": 0
+        },
+        "random_baseline": 0.5
+      },
+      "lucky_stars": {
+        "avg_matched": 0.29,
+        "match_distribution": {
+          "0": 125,
+          "1": 51,
+          "2": 0
+        },
+        "random_baseline": 0.33
+      }
+    },
+    "model_B_main_only": {
+      "main_numbers": {
+        "avg_matched": 0.591,
+        "match_distribution": {
+          "0": 93,
+          "1": 66,
+          "2": 13,
+          "3": 4,
+          "4": 0,
+          "5": 0
+        },
+        "random_baseline": 0.5
+      }
+    },
+    "model_C_stars_only": {
+      "lucky_stars": {
+        "avg_matched": 0.347,
+        "match_distribution": {
+          "0": 117,
+          "1": 57,
+          "2": 2
+        },
+        "random_baseline": 0.33
+      }
+    }
+  }
+}
