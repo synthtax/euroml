@@ -1,7 +1,7 @@
 """
 EuroMLions — Fetch Latest EuroMillions Results
 
-Scrapes the National Lottery site for the latest draw results.
+Scrapes euro-millions.com for the latest draw results.
 Updates the historical CSV and fills in actual results in
 history-predictions.json.
 """
@@ -13,7 +13,6 @@ import json
 import os
 import sys
 from datetime import datetime, timedelta
-from io import StringIO
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -21,8 +20,7 @@ DATA_DIR = os.path.join(PROJECT_ROOT, 'data')
 CSV_PATH = os.path.join(DATA_DIR, 'historical-kaggle-clean.csv')
 HISTORY_PATH = os.path.join(DATA_DIR, 'history-predictions.json')
 
-NL_RESULTS_URL = 'https://www.national-lottery.co.uk/results/euromillions/draw-history/csv'
-NL_RESULTS_PAGE = 'https://www.national-lottery.co.uk/results/euromillions'
+EUROMILLIONS_URL = 'https://www.euro-millions.com/results/{date}'
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) '
@@ -30,93 +28,83 @@ HEADERS = {
 }
 
 
-def fetch_latest_from_csv_endpoint():
+def get_recent_draw_dates(count=4):
+    """Get the last `count` EuroMillions draw dates (Tuesdays and Fridays)."""
+    dates = []
+    d = datetime.now()
+    while len(dates) < count:
+        if d.weekday() in [1, 4]:  # Tuesday=1, Friday=4
+            dates.append(d)
+        d -= timedelta(days=1)
+    return dates
+
+
+def fetch_draw(draw_date):
     """
-    Try the NL CSV download endpoint for the last 180 days of results.
-    Returns a list of draw dicts, newest first.
+    Fetch a single draw from euro-millions.com.
+    draw_date: datetime object.
+    Returns a draw dict or None.
     """
-    print("Fetching from NL CSV endpoint...")
+    date_str = draw_date.strftime('%d-%m-%Y')
+    url = EUROMILLIONS_URL.format(date=date_str)
+
     try:
-        resp = requests.get(NL_RESULTS_URL, headers=HEADERS, timeout=30)
-        resp.raise_for_status()
-
-        df = pd.read_csv(StringIO(resp.text))
-
-        draws = []
-        for _, row in df.iterrows():
-            draw_date = pd.to_datetime(row['DrawDate'], dayfirst=True)
-            draws.append({
-                'date': draw_date.strftime('%Y%m%d'),
-                'date_display': draw_date.strftime('%Y-%m-%d'),
-                'n1': int(row['Ball 1']),
-                'n2': int(row['Ball 2']),
-                'n3': int(row['Ball 3']),
-                'n4': int(row['Ball 4']),
-                'n5': int(row['Ball 5']),
-                's1': int(row['Lucky Star 1']),
-                's2': int(row['Lucky Star 2']),
-                'machine': row.get('Machine', None),
-                'ball_set': row.get('Ball Set', None),
-            })
-
-        print(f"✓ Fetched {len(draws)} draws from NL CSV endpoint")
-        return draws
-
-    except Exception as e:
-        print(f"✗ CSV endpoint failed: {e}")
-        return None
-
-
-def fetch_latest_from_page():
-    """
-    Fallback: scrape the NL results page for the most recent draw.
-    Returns a list with one draw dict, or None on failure.
-    """
-    print("Fetching from NL results page (fallback)...")
-    try:
-        resp = requests.get(NL_RESULTS_PAGE, headers=HEADERS, timeout=30)
+        resp = requests.get(url, headers=HEADERS, timeout=30)
         resp.raise_for_status()
 
         soup = BeautifulSoup(resp.text, 'html.parser')
 
-        # Look for the main number elements (NL site uses specific classes)
-        # This selector may need updating if the NL site changes
-        main_balls = soup.select('.main_ball, .ball, [class*="main"]')
-        star_balls = soup.select('.lucky_star, .star, [class*="star"]')
-
-        if not main_balls or not star_balls:
-            print("✗ Could not find ball elements on page — site may have changed")
+        # The ascending-order ball list has clean selectors
+        container = soup.find('ul', id='ballsAscending')
+        if not container:
+            print(f"  ✗ No ball container found for {date_str}")
             return None
 
-        main_numbers = [int(el.get_text(strip=True)) for el in main_balls[:5]]
-        lucky_stars = [int(el.get_text(strip=True)) for el in star_balls[:2]]
+        main_els = container.select('li.resultBall.ball')
+        star_els = container.select('li.resultBall.lucky-star')
 
-        today = datetime.now()
-        draws = [{
-            'date': today.strftime('%Y%m%d'),
-            'date_display': today.strftime('%Y-%m-%d'),
-            'n1': main_numbers[0], 'n2': main_numbers[1], 'n3': main_numbers[2],
-            'n4': main_numbers[3], 'n5': main_numbers[4],
-            's1': lucky_stars[0], 's2': lucky_stars[1],
-        }]
+        if len(main_els) < 5 or len(star_els) < 2:
+            print(f"  ✗ Incomplete results for {date_str}: "
+                  f"{len(main_els)} main, {len(star_els)} stars")
+            return None
 
-        print(f"✓ Scraped latest draw from NL results page")
-        return draws
+        main = sorted([int(el.get_text(strip=True)) for el in main_els[:5]])
+        stars = sorted([int(el.get_text(strip=True)) for el in star_els[:2]])
+
+        return {
+            'date': draw_date.strftime('%Y%m%d'),
+            'date_display': draw_date.strftime('%Y-%m-%d'),
+            'n1': main[0], 'n2': main[1], 'n3': main[2],
+            'n4': main[3], 'n5': main[4],
+            's1': stars[0], 's2': stars[1],
+        }
 
     except Exception as e:
-        print(f"✗ Page scraping failed: {e}")
+        print(f"  ✗ Failed to fetch {date_str}: {e}")
         return None
 
 
 def fetch_results():
-    """Fetch results using CSV endpoint first, falling back to page scrape."""
-    draws = fetch_latest_from_csv_endpoint()
-    if draws is None:
-        draws = fetch_latest_from_page()
-    if draws is None:
+    """Fetch recent draws from euro-millions.com."""
+    print("Fetching from euro-millions.com...")
+    dates = get_recent_draw_dates(count=4)
+
+    draws = []
+    for d in dates:
+        print(f"  Checking {d.strftime('%Y-%m-%d')} ({d.strftime('%A')})...")
+        draw = fetch_draw(d)
+        if draw:
+            draws.append(draw)
+            print(f"  ✓ {draw['n1']}, {draw['n2']}, {draw['n3']}, "
+                  f"{draw['n4']}, {draw['n5']} + "
+                  f"{draw['s1']}, {draw['s2']}")
+
+    if draws:
+        print(f"✓ Fetched {len(draws)} draw(s)")
+    else:
         print("✗ Could not fetch results from any source")
-        return None
-    return draws
+
+    return draws if draws else None
 
 
 def get_latest_draw(draws):
@@ -216,10 +204,15 @@ def main():
     print("=" * 50)
 
     draws = fetch_results()
-    if draws is None:
+    if not draws:
+        print("✗ No draws found from any source")
         sys.exit(1)
 
     latest = get_latest_draw(draws)
+    if not latest:
+        print("✗ Could not determine latest draw")
+        sys.exit(1)
+
     print(f"\nLatest draw: {latest['date_display']}")
     print(f"  Main: {latest['n1']}, {latest['n2']}, {latest['n3']}, {latest['n4']}, {latest['n5']}")
     print(f"  Stars: {latest['s1']}, {latest['s2']}")
