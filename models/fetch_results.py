@@ -122,8 +122,12 @@ def update_csv(draws):
     if not draws:
         return 0
 
-    existing = pd.read_csv(CSV_PATH)
-    existing_dates = set(str(d) for d in existing['date'].values)
+    if os.path.exists(CSV_PATH):
+        existing = pd.read_csv(CSV_PATH)
+        existing_dates = set(str(d) for d in existing['date'].values)
+    else:
+        existing = pd.DataFrame(columns=['date', 'n1', 'n2', 'n3', 'n4', 'n5', 's1', 's2'])
+        existing_dates = set()
 
     new_rows = []
     for draw in draws:
