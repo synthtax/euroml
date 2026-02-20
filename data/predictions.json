@@ -1,98 +1,99 @@
 {
-  "generated": "2026-02-17T19:40:53.816161",
-  "trained_on": "980 draws (post-Sept 2016)",
+  "generated": "2026-02-20T19:50:48.215651",
+  "next_draw": "2026-02-20",
+  "trained_on": "981 draws (post-Sept 2016)",
   "sequence_length": 100,
   "ensemble": {
     "main_numbers": [
+      19,
       20,
       23,
       42,
-      44,
       48
     ],
     "main_probabilities": [
-      0.2511,
-      0.2441,
-      0.2424,
-      0.2411,
-      0.2405
+      0.2459,
+      0.2389,
+      0.2382,
+      0.2367,
+      0.2366
     ],
     "main_uncertainty": [
-      0.0231,
-      0.0242,
-      0.022,
-      0.0219,
-      0.0278
+      0.0285,
+      0.0256,
+      0.02,
+      0.0294,
+      0.0266
     ],
     "lucky_stars": [
       2,
       3
     ],
     "lucky_star_probabilities": [
-      0.2861,
-      0.2857
+      0.2887,
+      0.2884
     ],
     "lucky_star_uncertainty": [
-      0.0178,
-      0.0166
+      0.0193,
+      0.0208
     ]
   },
   "model_A_combined": {
     "main_numbers": [
-      17,
       19,
       20,
       21,
+      23,
       42
     ],
     "main_probabilities": [
-      0.2461,
-      0.2447,
-      0.2444,
-      0.2424,
-      0.2419
+      0.242,
+      0.2406,
+      0.2403,
+      0.2401,
+      0.2397
     ],
     "main_uncertainty": [
-      0.0261,
-      0.027,
-      0.0244,
-      0.0268,
-      0.0246
+      0.028,
+      0.0247,
+      0.0238,
+      0.0236,
+      0.0244
     ],
     "lucky_stars": [
       2,
       3
     ],
     "lucky_star_probabilities": [
-      0.2943,
-      0.2886
+      0.2896,
+      0.2841
     ],
     "lucky_star_uncertainty": [
-      0.0221,
-      0.0207
+      0.0245,
+      0.0205
     ]
   },
   "model_B_main_only": {
     "main_numbers": [
-      16,
-      20,
+      15,
+      26,
       42,
       44,
       48
     ],
     "main_probabilities": [
-      0.2543,
-      0.2445,
-      0.2439,
-      0.2434,
-      0.2418
+      0.2494,
+      0.238,
+      0.238,
+      0.2373,
+      0.2372
     ],
     "main_uncertainty": [
-      0.0343,
-      0.0327,
-      0.0369,
-      0.0342,
-      0.0331
+      0.0445,
+      0.0373,
+      0.0443,
+      0.0401,
+      0.0421
     ]
   },
   "model_C_stars_only": {
@@ -101,62 +102,12 @@
       6
     ],
     "lucky_star_probabilities": [
-      0.2844,
-      0.2819
+      0.2936,
+      0.2918
     ],
     "lucky_star_uncertainty": [
-      0.0263,
-      0.0284
+      0.0274,
+      0.0291
     ]
-  },
-  "evaluation": {
-    "model_A_combined": {
-      "main_numbers": {
-        "avg_matched": 0.54,
-        "match_distribution": {
-          "0": 96,
-          "1": 65,
-          "2": 15,
-          "3": 0,
-          "4": 0,
-          "5": 0
-        },
-        "random_baseline": 0.5
-      },
-      "lucky_stars": {
-        "avg_matched": 0.29,
-        "match_distribution": {
-          "0": 125,
-          "1": 51,
-          "2": 0
-        },
-        "random_baseline": 0.33
-      }
-    },
-    "model_B_main_only": {
-      "main_numbers": {
-        "avg_matched": 0.591,
-        "match_distribution": {
-          "0": 93,
-          "1": 66,
-          "2": 13,
-          "3": 4,
-          "4": 0,
-          "5": 0
-        },
-        "random_baseline": 0.5
-      }
-    },
-    "model_C_stars_only": {
-      "lucky_stars": {
-        "avg_matched": 0.347,
-        "match_distribution": {
-          "0": 117,
-          "1": 57,
-          "2": 2
-        },
-        "random_baseline": 0.33
-      }
-    }
   }
 }
