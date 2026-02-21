@@ -103,9 +103,18 @@
         6
       ]
     },
-    "actual_main": null,
-    "actual_stars": null,
-    "main_matched": null,
-    "stars_matched": null
+    "actual_main": [
+      13,
+      24,
+      28,
+      33,
+      35
+    ],
+    "actual_stars": [
+      5,
+      9
+    ],
+    "main_matched": 0,
+    "stars_matched": 0
   }
 ]
