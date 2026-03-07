@@ -221,9 +221,18 @@
         6
       ]
     },
-    "actual_main": null,
-    "actual_stars": null,
-    "main_matched": null,
-    "stars_matched": null
+    "actual_main": [
+      15,
+      16,
+      19,
+      28,
+      37
+    ],
+    "actual_stars": [
+      6,
+      9
+    ],
+    "main_matched": 0,
+    "stars_matched": 0
   }
 ]
