@@ -575,9 +575,18 @@
         3
       ]
     },
-    "actual_main": null,
-    "actual_stars": null,
-    "main_matched": null,
-    "stars_matched": null
+    "actual_main": [
+      22,
+      23,
+      28,
+      41,
+      47
+    ],
+    "actual_stars": [
+      6,
+      8
+    ],
+    "main_matched": 1,
+    "stars_matched": 0
   }
 ]
