@@ -1,99 +1,99 @@
 {
-  "generated": "2026-07-31T19:16:56.762826",
-  "next_draw": "2026-07-31",
+  "generated": "2026-08-04T19:24:22.439122",
+  "next_draw": "2026-08-07",
   "trained_on": "1027 draws (post-Sept 2016)",
   "sequence_length": 100,
   "ensemble": {
     "main_numbers": [
-      21,
-      23,
-      32,
-      42,
-      46
-    ],
-    "main_probabilities": [
-      0.2262,
-      0.2239,
-      0.2237,
-      0.2193,
-      0.2174
-    ],
-    "main_uncertainty": [
-      0.0275,
-      0.0323,
-      0.0241,
-      0.0294,
-      0.025
-    ],
-    "lucky_stars": [
-      2,
-      3
-    ],
-    "lucky_star_probabilities": [
-      0.2879,
-      0.2828
-    ],
-    "lucky_star_uncertainty": [
-      0.0199,
-      0.0183
-    ]
-  },
-  "model_A_combined": {
-    "main_numbers": [
-      19,
+      17,
       20,
       21,
       23,
       42
     ],
     "main_probabilities": [
-      0.2372,
-      0.2346,
-      0.2345,
-      0.2342,
-      0.2326
+      0.233,
+      0.2276,
+      0.2265,
+      0.226,
+      0.2251
     ],
     "main_uncertainty": [
-      0.0226,
-      0.0243,
-      0.0232,
-      0.0222,
-      0.0298
+      0.0274,
+      0.0299,
+      0.0303,
+      0.0312,
+      0.026
     ],
     "lucky_stars": [
       2,
       3
     ],
     "lucky_star_probabilities": [
-      0.2771,
-      0.2761
+      0.287,
+      0.2842
     ],
     "lucky_star_uncertainty": [
+      0.0172,
+      0.0205
+    ]
+  },
+  "model_A_combined": {
+    "main_numbers": [
+      20,
+      21,
+      23,
+      42,
+      48
+    ],
+    "main_probabilities": [
+      0.2372,
+      0.2345,
+      0.2324,
+      0.2319,
+      0.231
+    ],
+    "main_uncertainty": [
       0.0225,
-      0.022
+      0.0247,
+      0.0257,
+      0.0232,
+      0.0225
+    ],
+    "lucky_stars": [
+      2,
+      3
+    ],
+    "lucky_star_probabilities": [
+      0.2789,
+      0.2741
+    ],
+    "lucky_star_uncertainty": [
+      0.0228,
+      0.0221
     ]
   },
   "model_B_main_only": {
     "main_numbers": [
+      17,
+      19,
       21,
-      23,
-      32,
-      42,
-      46
+      27,
+      42
     ],
     "main_probabilities": [
-      0.2209,
-      0.2165,
-      0.2158,
-      0.2151,
-      0.2119
+      0.2335,
+      0.2251,
+      0.2245,
+      0.2216,
+      0.2213
     ],
     "main_uncertainty": [
-      0.0434,
-      0.037,
-      0.0466,
-      0.0517,
-      0.0394
+      0.0424,
+      0.0356,
+      0.0484,
+      0.0431,
+      0.0476
     ]
   },
   "model_C_stars_only": {
@@ -102,12 +102,12 @@
       3
     ],
     "lucky_star_probabilities": [
-      0.2958,
-      0.2866
+      0.2957,
+      0.2878
     ],
     "lucky_star_uncertainty": [
-      0.0297,
-      0.0266
+      0.0247,
+      0.0306
     ]
   }
 }
