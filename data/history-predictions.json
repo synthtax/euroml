@@ -1632,5 +1632,55 @@
     ],
     "main_matched": 1,
     "stars_matched": 0
+  },
+  {
+    "draw_date": "2026-08-28",
+    "generated": "2026-08-25T18:32:41.346177",
+    "model_version": "v1 (LSTM)",
+    "ensemble": {
+      "main": [
+        16,
+        19,
+        20,
+        21,
+        42
+      ],
+      "stars": [
+        2,
+        3
+      ]
+    },
+    "model_A": {
+      "main": [
+        20,
+        21,
+        34,
+        42,
+        48
+      ],
+      "stars": [
+        2,
+        3
+      ]
+    },
+    "model_B": {
+      "main": [
+        13,
+        16,
+        19,
+        20,
+        21
+      ]
+    },
+    "model_C": {
+      "stars": [
+        2,
+        7
+      ]
+    },
+    "actual_main": null,
+    "actual_stars": null,
+    "main_matched": null,
+    "stars_matched": null
   }
 ]
