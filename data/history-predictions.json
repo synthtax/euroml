@@ -1964,10 +1964,19 @@
         6
       ]
     },
-    "actual_main": null,
-    "actual_stars": null,
-    "main_matched": null,
-    "stars_matched": null
+    "actual_main": [
+      4,
+      7,
+      12,
+      31,
+      44
+    ],
+    "actual_stars": [
+      8,
+      11
+    ],
+    "main_matched": 0,
+    "stars_matched": 0
   },
   {
     "draw_date": "2026-10-02",
