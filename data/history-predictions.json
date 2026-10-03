@@ -2023,10 +2023,19 @@
         3
       ]
     },
-    "actual_main": null,
-    "actual_stars": null,
-    "main_matched": null,
-    "stars_matched": null
+    "actual_main": [
+      7,
+      8,
+      10,
+      22,
+      35
+    ],
+    "actual_stars": [
+      2,
+      10
+    ],
+    "main_matched": 0,
+    "stars_matched": 1
   },
   {
     "draw_date": "2026-10-06",
