@@ -2141,10 +2141,19 @@
         3
       ]
     },
-    "actual_main": null,
-    "actual_stars": null,
-    "main_matched": null,
-    "stars_matched": null
+    "actual_main": [
+      5,
+      20,
+      24,
+      31,
+      45
+    ],
+    "actual_stars": [
+      5,
+      10
+    ],
+    "main_matched": 0,
+    "stars_matched": 0
   },
   {
     "draw_date": "2026-10-13",
